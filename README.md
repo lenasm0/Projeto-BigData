@@ -261,8 +261,4 @@ O projeto deve:
 * Realizar análises estatísticas
 * Exibir dashboard interativo
 
----
 
-## Autor(es)
-
-Adicionar os integrantes do grupo.
