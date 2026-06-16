@@ -213,7 +213,3 @@ O sistema deverá:
 * Gerar análises estatísticas sobre desempenho acadêmico e hábitos de jogos
 
 ---
-
-## Autor(es)
-
-Adicionar nome(s) dos integrantes do grupo.
