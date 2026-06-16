@@ -4,9 +4,9 @@ df = pd.read_csv(
 "data/raw/gaming-vs-academic-performance/Gaming_Academic_Performance.csv"
 )
 
-print("="*60)
+print("-"*60)
 print("ANÁLISE 1 - HORAS JOGANDO X NOTAS")
-print("="*60)
+print("-"*60)
 
 df["gaming_group"] = pd.cut(
 df["gaming_hours"],

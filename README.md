@@ -1,46 +1,59 @@
-# Projeto Big Data - Análise da Relação entre Jogos e Desempenho Acadêmico
+# Projeto Big Data - Análise de Jogos e Desempenho Acadêmico
 
 ## Objetivo
 
-Este projeto implementa um pipeline de ingestão de Big Data utilizando dados sobre hábitos de jogos eletrônicos e desempenho acadêmico de estudantes.
+Implementar um pipeline de ingestão de Big Data utilizando MongoDB para analisar a relação entre hábitos de jogos eletrônicos e desempenho acadêmico dos estudantes.
 
-O objetivo é capturar, transformar, armazenar e analisar os dados para identificar padrões comportamentais relacionados ao desempenho escolar.
+O projeto contempla as etapas de extração, transformação, armazenamento e análise dos dados.
 
 ---
 
-## Dataset Utilizado
+## Dataset
 
-Fonte:
+Fonte dos dados:
 
 https://www.kaggle.com/datasets/aiexplorer77/gaming-vs-academic-performance
 
-O dataset contém informações sobre:
+Informações disponíveis:
 
-* Horas de estudo
 * Horas jogando
-* Frequência escolar
-* Notas
+* Horas estudando
 * Horas de sono
+* Frequência escolar
 * Nível de estresse
-* Perfil dos estudantes
+* Gênero
+* Notas acadêmicas
+* Score de dependência em jogos
 
 ---
 
 ## Arquitetura da Solução
 
 Kaggle
+
 ↓
-CSV
+
+Dataset CSV
+
 ↓
+
 Separação dos Dados
+
 ↓
-Limpeza e Validação
+
+Limpeza e Transformação
+
 ↓
-Conversão para Parquet
+
+Arquivos Parquet
+
 ↓
+
 MongoDB
+
 ↓
-Análises
+
+Dashboard Analítico
 
 ---
 
@@ -48,10 +61,13 @@ Análises
 
 * Python
 * Pandas
-* NumPy
 * PyArrow
 * MongoDB
 * MongoDB Compass
+* Streamlit
+* Matplotlib
+* Git
+* GitHub
 
 ---
 
@@ -61,43 +77,46 @@ games-academic-bigdata
 
 ├── data
 
-│   ├── raw
+│ ├── raw
 
-│   ├── separated
+│ ├── separated
 
-│   └── processed
+│ └── processed
 
 │
 
 ├── scripts
 
-│   ├── 01_extract.py
+│ ├── 01_extract.py
 
-│   ├── 02_transform.py
+│ ├── 02_transform.py
 
-│   ├── 03_load_mongodb.py
+│ ├── 03_load_mongodb.py
 
-│   └── 04_analysis.py
+│ ├── 04_analysis.py
 
 │
 
+├── dashboard.py
+
 ├── requirements.txt
 
-└── README.md
+├── README.md
 
 ---
 
-## Etapas do Pipeline
+## Etapa 1 - Extração
 
-### 1. Extração
-
-Leitura do dataset original disponibilizado no Kaggle.
-
-Script:
+Arquivo:
 
 scripts/01_extract.py
 
-Responsável por separar os dados em:
+Responsável por:
+
+* Ler o dataset original
+* Separar os dados por domínio
+
+Arquivos gerados:
 
 * academic.csv
 * gaming.csv
@@ -106,18 +125,18 @@ Responsável por separar os dados em:
 
 ---
 
-### 2. Transformação
+## Etapa 2 - Transformação
 
-Script:
+Arquivo:
 
 scripts/02_transform.py
 
-Operações realizadas:
+Responsável por:
 
-* Remoção de registros duplicados
-* Tratamento de valores nulos
-* Padronização de categorias
-* Conversão para formato Parquet
+* Remover duplicidades
+* Tratar valores nulos
+* Padronizar dados
+* Converter CSV para Parquet
 
 Arquivos gerados:
 
@@ -128,13 +147,16 @@ Arquivos gerados:
 
 ---
 
-### 3. Carga
+## Etapa 3 - Carga no MongoDB
 
-Script:
+Arquivo:
 
 scripts/03_load_mongodb.py
 
-Responsável por carregar os arquivos Parquet para o MongoDB.
+Responsável por:
+
+* Ler os arquivos Parquet
+* Inserir os dados no MongoDB
 
 Coleções criadas:
 
@@ -145,20 +167,41 @@ Coleções criadas:
 
 ---
 
-### 4. Análises
+## Etapa 4 - Análises
 
-Script:
+Arquivo:
 
 scripts/04_analysis.py
 
 Análises realizadas:
 
-* Relação entre horas jogando e notas
-* Impacto do sono no desempenho acadêmico
-* Influência das horas de estudo
-* Impacto do estresse
-* Perfil dos estudantes
-* Identificação de risco de baixa performance
+* Horas jogando x notas
+* Horas de estudo x notas
+* Sono x desempenho
+* Estresse x desempenho
+* Segmentação dos estudantes
+
+---
+
+## Dashboard Analítico
+
+Arquivo:
+
+dashboard.py
+
+O dashboard foi desenvolvido utilizando Streamlit para permitir visualização interativa dos resultados.
+
+Funcionalidades:
+
+* Indicadores gerais
+* Filtros por gênero
+* Filtros por nível de estresse
+* Horas jogando x nota média
+* Horas estudando x nota média
+* Sono x nota média
+* Distribuição do estresse
+* Insights automáticos
+* Visualização do dataset
 
 ---
 
@@ -184,11 +227,15 @@ python scripts/03_load_mongodb.py
 
 python scripts/04_analysis.py
 
+### Executar dashboard
+
+streamlit run dashboard.py
+
 ---
 
 ## MongoDB
 
-Abrir o Mongo Shell:
+Abrir Mongo Shell:
 
 mongosh
 
@@ -204,12 +251,18 @@ show collections
 
 ## Resultados Esperados
 
-O sistema deverá:
+O projeto deve:
 
-* Separar os dados em múltiplos domínios
-* Realizar limpeza e padronização
-* Converter os dados para Parquet
-* Carregar os dados no MongoDB
-* Gerar análises estatísticas sobre desempenho acadêmico e hábitos de jogos
+* Extrair dados do Kaggle
+* Separar os dados por domínio
+* Transformar os dados
+* Converter para Parquet
+* Carregar no MongoDB
+* Realizar análises estatísticas
+* Exibir dashboard interativo
 
 ---
+
+## Autor(es)
+
+Adicionar os integrantes do grupo.

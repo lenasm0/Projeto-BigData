@@ -7,7 +7,7 @@ arquivo = "data/raw/gaming-vs-academic-performance/Gaming_Academic_Performance.c
 
 df = pd.read_csv(arquivo)
 
-# Dados Acadêmicos
+# dados academicos
 academic = df[
     ["student_id", "study_hours", "attendance", "grades"]
 ]
@@ -17,7 +17,7 @@ academic.to_csv(
     index=False
 )
 
-# Dados de Jogos
+# dados de jogos
 gaming = df[
     ["student_id", "gaming_hours", "gaming_genre"]
 ]
@@ -27,7 +27,7 @@ gaming.to_csv(
     index=False
 )
 
-# Dados Pessoais
+# dados de perfil do estudante
 personal = df[
     [
         "student_id",
@@ -43,7 +43,7 @@ personal.to_csv(
     index=False
 )
 
-# Dados de Saúde
+# dados de saude
 health = df[
     [
         "student_id",
